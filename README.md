@@ -125,3 +125,6 @@ $avin
     ->setFilter('producer', 'Cortes de Cima')
     ->GetWineByAvin('AVIN6452997073019');
 ```
+
+## Testing
+In the tests folder u can find several tests for online and offline.
