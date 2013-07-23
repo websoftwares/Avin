@@ -28,7 +28,7 @@ class AvinTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         if (! self::VALID_KEY) {
-            $this->avin = new Avin(new AvinClient(self::TEST_KEY));
+            $this->avin = new Avin(new AvinClient(self::TEST_KEY), $this->debug);
         } else {
             $this->avin = new Avin(new AvinClient(self::VALID_KEY));
             $this->debug = false;
@@ -51,7 +51,7 @@ class AvinTest extends \PHPUnit_Framework_TestCase
     public function testGetWinesByNameSucceeds()
     {
         if ($this->debug) {
-            $actual = $this->avin->GetWinesByName('Riesling', $this->debug);
+            $actual = $this->avin->GetWinesByName('Riesling');
             $expected = 'http://api.avin.cc/rest/v1.0/GetWinesByName/Riesling/&key=123456789UnitTestKey&format=json';
             $this->assertEquals($expected,$actual);
 
@@ -63,10 +63,10 @@ class AvinTest extends \PHPUnit_Framework_TestCase
                 ->setFilter('page', 1)
                 ->setFilter('sortorder', 'asc')
                 ->setFilter('sortby', 'name')
-                ->GetWinesByName('Riesling', $this->debug);
+                ->GetWinesByName('Riesling');
             $this->assertEquals($expected . '&vintage=2011&country=276&type=2&producer=Leonard+Kreusch&page=1&sortorder=asc&sortby=name', $filters);
 
-            $reset = $this->avin->clearFilter()->GetWinesByName('Riesling', $this->debug);
+            $reset = $this->avin->clearFilter()->GetWinesByName('Riesling');
             $this->assertEquals($expected, $reset);
 
         } else {
@@ -81,7 +81,7 @@ class AvinTest extends \PHPUnit_Framework_TestCase
     public function testGetWineByAvinSucceeds()
     {
         if ($this->debug) {
-            $actual = $this->avin->GetWineByAvin('AVIN6452997073019', $this->debug);
+            $actual = $this->avin->GetWineByAvin('AVIN6452997073019');
             $expected = 'http://api.avin.cc/rest/v1.0/GetWineByAvin/AVIN6452997073019/&key=123456789UnitTestKey&format=json';
             $this->assertEquals($expected,$actual);
 
@@ -90,10 +90,10 @@ class AvinTest extends \PHPUnit_Framework_TestCase
                 ->setFilter('country', 620)
                 ->setFilter('type', '1')
                 ->setFilter('producer', 'Cortes de Cima')
-                ->GetWineByAvin('AVIN6452997073019', $this->debug);
+                ->GetWineByAvin('AVIN6452997073019');
             $this->assertEquals($expected . '&vintage=2003&country=620&type=1&producer=Cortes+de+Cima', $filters);
 
-            $reset = $this->avin->clearFilter()->GetWineByAvin('AVIN6452997073019', $this->debug);
+            $reset = $this->avin->clearFilter()->GetWineByAvin('AVIN6452997073019');
             $this->assertEquals($expected, $reset);
 
         } else {
@@ -108,7 +108,7 @@ class AvinTest extends \PHPUnit_Framework_TestCase
     public function testGetCountriesSucceeds()
     {
         if ($this->debug) {
-            $actual = $this->avin->GetCountries($this->debug);
+            $actual = $this->avin->GetCountries();
             $expected = 'http://api.avin.cc/rest/v1.0/GetCountries/&key=123456789UnitTestKey&format=json';
             $this->assertEquals($expected,$actual);
 
@@ -124,7 +124,7 @@ class AvinTest extends \PHPUnit_Framework_TestCase
     public function testGetWineTypesSucceeds()
     {
         if ($this->debug) {
-            $actual = $this->avin->GetWineTypes($this->debug);
+            $actual = $this->avin->GetWineTypes();
             $expected = 'http://api.avin.cc/rest/v1.0/GetWineTypes/&key=123456789UnitTestKey&format=json';
             $this->assertEquals($expected,$actual);
 
@@ -141,13 +141,13 @@ class AvinTest extends \PHPUnit_Framework_TestCase
     {
         if ($this->debug) {
             $expected = 'http://api.avin.cc/rest/v1.0/GetProducerByID/15315/&key=123456789UnitTestKey&format=json';
-            $actual = $this->avin->getProducerByID(15315, $this->debug);
+            $actual = $this->avin->getProducerByID(15315);
             $this->assertEquals($expected,$actual);
 
-            $country = $this->avin->setFilter('country', 203)->getProducerByID(15315, $this->debug);
+            $country = $this->avin->setFilter('country', 203)->getProducerByID(15315);
             $this->assertEquals($expected . '&country=203',$country);
 
-            $reset = $this->avin->clearFilter()->getProducerByID(15315, $this->debug);
+            $reset = $this->avin->clearFilter()->getProducerByID(15315);
             $this->assertEquals($expected, $reset);
 
         } else {
@@ -162,7 +162,7 @@ class AvinTest extends \PHPUnit_Framework_TestCase
     public function testGetProducerByNameSucceeds()
     {
         if ($this->debug) {
-            $actual = $this->avin->GetProducersByName('Era', $this->debug);
+            $actual = $this->avin->GetProducersByName('Era');
             $expected = 'http://api.avin.cc/rest/v1.0/GetProducersByName/Era/&key=123456789UnitTestKey&format=json';
             $this->assertEquals($expected,$actual);
 
@@ -171,10 +171,10 @@ class AvinTest extends \PHPUnit_Framework_TestCase
                 ->setFilter('page', 1)
                 ->setFilter('sortorder', 'asc')
                 ->setFilter('sortby', 'name')
-                ->GetProducersByName('Era', $this->debug);
+                ->GetProducersByName('Era');
             $this->assertEquals($expected . '&country=276&page=1&sortorder=asc&sortby=name', $filters);
 
-            $reset = $this->avin->clearFilter()->GetProducersByName('Era', $this->debug);
+            $reset = $this->avin->clearFilter()->GetProducersByName('Era');
             $this->assertEquals($expected, $reset);
 
         } else {

@@ -19,25 +19,32 @@ class Avin
     private $client = null;
 
     /**
-     * __construct description
-     * @param object $client the api client
+     * $debug
+     * @var boolean
      */
-    public function __construct(AvinInterface $client = null)
+    private $debug = false;
+
+    /**
+     * __construct description
+     * @param object  $client the api client
+     * @param boolean $debug  this is for testing purposes
+     */
+    public function __construct(AvinInterface $client = null, $debug = false)
     {
         if (! $client) {
             throw new AvinException('A client must be provided');
         }
         $this->client = $client;
+        $this->debug = $debug;
     }
 
     /**
      * GetWineByAvin returns wines list
      *
-     * @param  string  $avin  the avin number
-     * @param  boolean $debug
-     * @return mixed   ArrayObject|string
+     * @param  string $avin the avin number
+     * @return mixed  ArrayObject|string
      */
-    public function GetWineByAvin($avin = null, $debug = false)
+    public function GetWineByAvin($avin = null)
     {
         if (! $avin) {
             throw new AvinException('Please provide an AVIN code');
@@ -46,7 +53,7 @@ class Avin
         $this->client->setUrl(__FUNCTION__, $avin);
 
         // For testing
-        if ($debug) {
+        if ($this->debug) {
             // Returned compiled url
             return $this->client->getUrl();
         }
@@ -65,11 +72,10 @@ class Avin
     /**
      * GetWinesByName returns wines list
      *
-     * @param  string  $name  the wine name
-     * @param  boolean $debug
-     * @return mixed   ArrayObject|string
+     * @param  string $name the wine name
+     * @return mixed  ArrayObject|string
      */
-    public function GetWinesByName($name = null, $debug = false)
+    public function GetWinesByName($name = null)
     {
         if (! $name) {
             throw new AvinException('Please provide a Wine name');
@@ -78,7 +84,7 @@ class Avin
         $this->client->setUrl(__FUNCTION__, $name);
 
         // For testing
-        if ($debug) {
+        if ($this->debug) {
             // Returned compiled url
             return $this->client->getUrl();
         }
@@ -97,16 +103,15 @@ class Avin
     /**
      * GetCountries returns countries list
      *
-     * @param  boolean $debug
-     * @return mixed   ArrayObject|string
+     * @return mixed ArrayObject|string
      */
-    public function GetCountries($debug = false)
+    public function GetCountries()
     {
         // Create url for making the request
         $this->client->setUrl(__FUNCTION__);
 
         // For testing
-        if ($debug) {
+        if ($this->debug) {
             // Returned compiled url
             return $this->client->getUrl();
         }
@@ -123,16 +128,15 @@ class Avin
     /**
      * GetWineTypes returns wine_types list
      *
-     * @param  boolean $debug
-     * @return mixed   ArrayObject|string
+     * @return mixed ArrayObject|string
      */
-    public function GetWineTypes($debug = false)
+    public function GetWineTypes()
     {
         // Create url for making the request
         $this->client->setUrl(__FUNCTION__);
 
         // For testing
-        if ($debug) {
+        if ($this->debug) {
             // Returned compiled url
             return $this->client->getUrl();
         }
@@ -149,11 +153,10 @@ class Avin
     /**
      * GetProducersByName returns producers list
      *
-     * @param  string  $name  the producer name
-     * @param  boolean $debug
-     * @return mixed   ArrayObject|string
+     * @param  string $name the producer name
+     * @return mixed  ArrayObject|string
      */
-    public function GetProducersByName($name = null, $debug = false)
+    public function GetProducersByName($name = null)
     {
         if (! $name) {
             throw new AvinException('Please provide a Producer name');
@@ -162,7 +165,7 @@ class Avin
         $this->client->setUrl(__FUNCTION__, $name);
 
         // For testing
-        if ($debug) {
+        if ($this->debug) {
             // Returned compiled url
             return $this->client->getUrl();
         }
@@ -181,11 +184,10 @@ class Avin
     /**
      * GetProducerByID returns producers list
      *
-     * @param  int     $id    the producer id
-     * @param  boolean $debug
-     * @return mixed   ArrayObject|string
+     * @param  int   $id the producer id
+     * @return mixed ArrayObject|string
      */
-    public function GetProducerByID($id = null, $debug = false)
+    public function GetProducerByID($id = null)
     {
         if (! $id) {
             throw new AvinException('Please provide a Producer #ID');
@@ -194,7 +196,7 @@ class Avin
         $this->client->setUrl(__FUNCTION__, $id);
 
         // For testing
-        if ($debug) {
+        if ($this->debug) {
             // Returned compiled url
             return $this->client->getUrl();
         }
