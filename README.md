@@ -40,7 +40,7 @@ Gets a wine by Avin.
 ```php
 use Websoftwares\AvinClient, Websoftwares\Avin;
 
-$avin = new Avin(new AvinClient(123456789YourApiKey));
+$avin = new Avin(new AvinClient('123456789YourApiKey'));
 $avin->GetWineByAvin('AVIN0123456789012');
 
 ```
@@ -51,7 +51,7 @@ Gets wine by name.
 ```php
 use Websoftwares\AvinClient, Websoftwares\Avin;
 
-$avin = new Avin(new AvinClient(123456789YourApiKey));
+$avin = new Avin(new AvinClient('123456789YourApiKey'));
 $avin->GetWinesByName('Era');
 
 ```
@@ -62,7 +62,7 @@ Gets a list of countries.
 ```php
 use Websoftwares\AvinClient, Websoftwares\Avin;
 
-$avin = new Avin(new AvinClient(123456789YourApiKey));
+$avin = new Avin(new AvinClient('123456789YourApiKey'));
 $avin->GetCountries();
 
 ```
@@ -73,7 +73,7 @@ Gets a list of wine types.
 ```php
 use Websoftwares\AvinClient, Websoftwares\Avin;
 
-$avin = new Avin(new AvinClient(123456789YourApiKey));
+$avin = new Avin(new AvinClient('123456789YourApiKey'));
 $avin->GetWineTypes();
 
 ```
@@ -84,7 +84,7 @@ Gets a producer by id.
 ```php
 use Websoftwares\AvinClient, Websoftwares\Avin;
 
-$avin = new Avin(new AvinClient(123456789YourApiKey));
+$avin = new Avin(new AvinClient('123456789YourApiKey'));
 $avin->GetProducerByID(12345);
 
 ```
@@ -95,7 +95,7 @@ Gets a producer by name.
 ```php
 use Websoftwares\AvinClient, Websoftwares\Avin;
 
-$avin = new Avin(new AvinClient(123456789YourApiKey));
+$avin = new Avin(new AvinClient('123456789YourApiKey'));
 $avin->GetProducerByName('Producer sample name');
 
 ```
@@ -106,7 +106,7 @@ Please read the [documentation](http://www.avin.cc/api-documentation/ "avin.cc")
 ```php
 use Websoftwares\AvinClient, Websoftwares\Avin;
 
-$avin = new Avin(new AvinClient(123456789YourApiKey));
+$avin = new Avin(new AvinClient('123456789YourApiKey'));
 
 $avin
 	->setFilter('vintage', 2003)
@@ -126,7 +126,7 @@ use Websoftwares\AvinClient,
 	Websoftwares\AvinException;
 
 try {
-	$avin = new Avin(new AvinClient(123456789YourApiKey));
+	$avin = new Avin(new AvinClient('123456789YourApiKey'));
 	$avin->GetWinesByName('Era');
 } catch (AvinException $e) {
 	echo $e->getMessages();
