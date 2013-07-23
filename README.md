@@ -129,7 +129,7 @@ try {
 	$avin = new Avin(new AvinClient('123456789YourApiKey'));
 	$avin->GetWinesByName('Era');
 } catch (AvinException $e) {
-	echo $e->getMessages();
+	echo $e->getMessage();
 }
 
 ```
