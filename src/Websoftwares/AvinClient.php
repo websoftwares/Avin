@@ -66,7 +66,7 @@ class AvinClient implements AvinInterface
         $this->url .= self::API_VERSION . $appendix;
 
         if ($argument) {
-            $this->url .=  $method . $appendix . $argument . $appendix;
+            $this->url .=  $method . $appendix . rawurlencode($argument) . $appendix;
         } else {
             $this->url .=  $method . $appendix;
         }
